@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { Form } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,10 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+  loginUser(form:ElementRef){
+    console.log(form);
+    //console.log(form.value.password);
   }
 
 }

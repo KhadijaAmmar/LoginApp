@@ -26,3 +26,7 @@ transition: .3s ease all;
     margin: 50px auto;
     width: 500px;
 }
+
+input.ng-invalid.ng-touched{
+    border: 1px solid #ff0000;
+}
