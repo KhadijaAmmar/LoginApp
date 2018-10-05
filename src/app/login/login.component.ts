@@ -1,20 +1,55 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { Form } from '@angular/forms';
+import { Form, NgForm } from '@angular/forms';
+import {AuthService} from './../Services/auth.service';
+import {User} from './../Model/user';
+import { Router } from '@angular/router';
+import * as $ from 'jquery';
+import { StorageManagerService } from './../Services/storage-manager.service';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [AuthService, StorageManagerService]
 })
 export class LoginComponent implements OnInit {
+  user : User;
 
-  constructor() { }
+  constructor(private authenticationService : AuthService, public router: Router, private storageManagerService:StorageManagerService ) { }
 
   ngOnInit() {
+    if (this.storageManagerService.retrieveToken() !== ''){
+      //this.router.navigate(['/welcome']);
+    }
   }
-  loginUser(form:ElementRef){
-    console.log(form);
-    //console.log(form.value.password);
+
+  loginUser(form:NgForm){
+    console.log(form.value.userid);
+    console.log(form.value.password);
+    let login = form.value.userid;
+    let password = form.value.password;
+   /* const user = {login password} as IUser;*/
+   /* this.authenticationService.login(login, password)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.alertService.error(error);
+                    this.loading = false;
+                });*/
+
+
+    this.authenticationService.logIn(this.user).subscribe(user => {
+                  this.storageManagerService.storeToken(user.token)
+                  this.storageManagerService.storeEmail(login)
+                  this.storageManagerService.storePassword(password)
+                  this.user = new User()
+                  this.router.navigate(['/validation']);
+                      
+    })
   }
 
 }

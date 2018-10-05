@@ -5,15 +5,22 @@ import { Routes, RouterModule } from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { ValidationComponent } from './validation/validation.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 const appRoutes : Routes = [
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'validation', component: ValidationComponent},
+  { path: 'welcome', component: WelcomeComponent}
+
 ]
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ValidationComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
