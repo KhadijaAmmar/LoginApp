@@ -19,33 +19,22 @@ export class LoginComponent implements OnInit {
   constructor(private authenticationService : AuthService, public router: Router, private storageManagerService:StorageManagerService ) { }
 
   ngOnInit() {
-    if (this.storageManagerService.retrieveToken() !== ''){
-      //this.router.navigate(['/welcome']);
+    if (this.storageManagerService.retrieveEmail() !== ''){
+      this.router.navigate(['/welcome']);
     }
-  }
+   }
 
   loginUser(form:NgForm){
     console.log(form.value.userid);
     console.log(form.value.password);
     let login = form.value.userid;
     let password = form.value.password;
-   /* const user = {login password} as IUser;*/
-   /* this.authenticationService.login(login, password)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });*/
+  
 
 
     this.authenticationService.logIn(this.user).subscribe(user => {
-                  this.storageManagerService.storeToken(user.token)
+                
                   this.storageManagerService.storeEmail(login)
-                  this.storageManagerService.storePassword(password)
                   this.user = new User()
                   this.router.navigate(['/validation']);
                       

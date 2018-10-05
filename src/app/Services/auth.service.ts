@@ -13,7 +13,7 @@ import {User} from './../Model/user';
 export class AuthService {
  
  
-  private URL = "http://localhost:5000/api/";
+  private URL = "http://localhost:5000/api/login";
   private httpOptions = {
     headers: new HttpHeaders(
       { 
@@ -30,7 +30,7 @@ export class AuthService {
   }*/
 
   logIn (user: User): Observable<User> {
-    return this.http.post<User>(this.URL+'login', user, this.httpOptions)
+    return this.http.post<User>(this.URL, user, this.httpOptions)
     .pipe(
       tap((user: User) => this.log(`added user`)),
       catchError(this.handleError<User>('addUser'))

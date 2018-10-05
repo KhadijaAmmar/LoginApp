@@ -25,7 +25,11 @@
                   placeholder="password"
                   name="password"
                   ngModel
-                  required> 
+                  required
+                  pwd
+                  #pwd="ngModel">
+                  <span class="help-block" *ngIf=" pwd.touched">
+                    Please enter a password</span>
             </div> 
 
             <button class="btn btn-primary" 

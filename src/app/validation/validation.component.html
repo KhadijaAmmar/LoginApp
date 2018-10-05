@@ -38,14 +38,14 @@
     
    
     <div class="checkbox flex">
-    <input id="conditions" type="checkbox" class="checkbox-input" required="required" aria-required="true" title="Please accept the conditions" id="agree" name='agree'>
+    <input id="conditions" type="checkbox" class="checkbox-input" required="required" aria-required="true" title="Please accept the conditions" id="agree" name='agree' (change)="toggleTerms($event)">
     <label class="checkbox-label" for="conditions_student">I Accept</label>
     <span class="error" aria-live="polite"></span>
     <br><br>
    
     
-    <a class="button" id="sign-up">Back</a>
-    <a class="button" id="log-in" onclick=accept()>Submit</a> 
+    <a class="button" id="back"  (click)="back()" >Back</a>
+    <a class="button" id="accept"  (click)="accept()">Submit</a> 
 
 </div>
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageManagerService } from './../Services/storage-manager.service';
 
 @Component({
   selector: 'app-validation',
@@ -7,14 +8,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./validation.component.css']
 })
 export class ValidationComponent implements OnInit {
+  public contentEditable = false;
 
-  constructor( public router: Router) { }
+  constructor( public router: Router,private storageManagerService:StorageManagerService) { }
 
   ngOnInit() {
     
   }
   
-  accept(){
-    this.router.navigate(['/welcome']);
+  toggleTerms(event) {
+    if ( event.target.checked ) {
+      this.contentEditable = true;
+    }
   }
+
+  accept(){
+    if (this.contentEditable){
+      this.router.navigate(['/welcome']);
+    }
+  }
+
+  back() {
+    this.storageManagerService.removeSession();
+    this.router.navigate(['/login']);
+  }
+
 }
