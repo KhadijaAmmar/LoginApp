@@ -32,8 +32,8 @@ export class AuthService {
   logIn (user: User): Observable<User> {
     return this.http.post<User>(this.URL, user, this.httpOptions)
     .pipe(
-      tap((user: User) => this.log(`added user`)),
-      catchError(this.handleError<User>('addUser'))
+      tap((user: User) => this.log(`Connexion...`)),
+      catchError(this.handleError<User>('User connected'))
     );
   }
 
