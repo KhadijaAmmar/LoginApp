@@ -29,13 +29,14 @@ export class LoginComponent implements OnInit {
     console.log(form.value.password);
     let login = form.value.userid;
     let password = form.value.password;
-  
+    this.user = new User();
+    this.user.login=login;
+    this.user.password=password;
 
 
     this.authenticationService.logIn(this.user).subscribe(user => {
                 
-                  this.storageManagerService.storeEmail(login)
-                  this.user = new User()
+                  this.storageManagerService.storeEmail(user.login)
                   this.router.navigate(['/validation']);
                       
     })
