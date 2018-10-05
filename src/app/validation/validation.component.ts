@@ -13,7 +13,6 @@ export class ValidationComponent implements OnInit {
   constructor( public router: Router,private storageManagerService:StorageManagerService) { }
 
   ngOnInit() {
-    
   }
   
   toggleTerms(event) {

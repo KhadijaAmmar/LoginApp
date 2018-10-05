@@ -14,11 +14,13 @@ import { StorageManagerService } from './Services/storage-manager.service';
 
 
 const appRoutes : Routes = [
+  //{ path: '/', redirectTo: 'login'},
   { path: 'login', component: LoginComponent},
   { path: 'validation', component: ValidationComponent},
-  { path: 'welcome', component: WelcomeComponent}
-
+  { path: 'welcome', component: WelcomeComponent},
+  { path: '**', redirectTo: 'login' }
 ]
+
 @NgModule({
   declarations: [
     AppComponent,
